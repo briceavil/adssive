@@ -8,14 +8,8 @@ use Livewire\WithPagination;
 
 class Users extends Component
 {
-    protected $users;
     public $search;
     use WithPagination;
-
-    public function mount()
-    {
-        $this->users = User::paginate(10);
-    }
 
     public function searchUsers()
     {
@@ -24,6 +18,6 @@ class Users extends Component
 
     public function render()
     {
-        return view('livewire.users', ['users' => $this->users]);
+        return view('livewire.users', ['users' => $this->users ?? User::paginate(10)]);
     }
 }

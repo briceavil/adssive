@@ -16,9 +16,9 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         //execute users/formats/roles/permissions seeders 
-        $this->call(RolesSeeder::class); //create roles (admin, manager, sales, super)
-        $this->call(PermissionsSeeder::class); //create permissions
-        $this->call(UsersSeeder::class); //create 10k users and super user (1)
-        $this->call(FormatsSeeder::class); //create formats from a array of extensions and mime types
+        $this->call(RoleSeeder::class); //create roles (admin, manager, sales, super)
+        $this->call(PermissionSeeder::class); //create permissions
+        $this->call(UserSeeder::class); //create 10k users and super user (1)
+        $this->call(FormatSeeder::class); //create formats from a array of extensions and mime types
     }
 }

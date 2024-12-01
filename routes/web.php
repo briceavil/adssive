@@ -1,6 +1,8 @@
 <?php
 
 use App\Livewire\Users;
+use App\Livewire\Formats;
+use App\Livewire\Files;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -16,5 +18,16 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 
-    Route::get('/users', Users::class);
+    Route::get('/users', function () {
+        return view('users');
+    })->name('users');
+
+    Route::get('/formats', function () {
+        return view('formats');
+    })->name('formats');
+
+    Route::get('/files', function () {
+        return view('files');
+    })->name('files');
+
 });

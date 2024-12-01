@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Formats;
+use App\Models\Format;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class FormatsSeeder extends Seeder
+class FormatSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,6 +16,7 @@ class FormatsSeeder extends Seeder
         $files = array(
             '.jpeg' => 'image/jpeg',
             '.jpg' => 'image/jpeg',
+            '.jpe' => 'image/jpeg',
             '.png' => 'image/png',
             '.gif' => 'image/gif',
             '.svg' => 'image/svg+xml',
@@ -40,7 +41,7 @@ class FormatsSeeder extends Seeder
         );
 
         foreach ($files as $extension => $mime_type) {
-            Formats::factory([
+            Format::factory([
                 'format_name' => $extension,
                 'mime_type' => $mime_type,
                 'description' => fake()->sentence(),
