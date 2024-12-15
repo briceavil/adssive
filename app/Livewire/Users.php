@@ -8,8 +8,9 @@ use Livewire\WithPagination;
 
 class Users extends Component
 {
-    public $search;
     use WithPagination;
+    public $search;
+
 
     public function searchUsers()
     {

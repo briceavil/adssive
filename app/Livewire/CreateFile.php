@@ -7,28 +7,26 @@ use App\Models\File;
 use App\Models\User;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Features\SupportFileUploads\WithFileUploads;
+use Livewire\WithPagination;
 use LivewireUI\Modal\ModalComponent;
 
 class CreateFile extends ModalComponent
 {
     use WithFileUploads;
-    public $tittle;
-    public $original_title;
-    public $format;
+    use WithPagination;
     public $file;
 
 
     public function addFile()
     {
-        $newFile = Storage::disk('collection')->put('image', $this->file[0]);
-        $fileGet = Storage::url($newFile);
-        dd($fileGet);
-        dd($this->file[0]->getClientOriginalName());
+        $file_uploaded = $this->file[0];
+        $file_name = time() . '.' . $file_uploaded->getClientOriginalExtension();
+        $path = $file_uploaded->storeAs('image', $file_name, 'collection');
         File::create([
-            'tittle' => $this->tittle,
-            'original_title' => $this->original_title,
-            'format' => $this->format,
-            'path' => 'image',
+            'tittle' => $file_name,
+            'original_title' => $file_uploaded->getClientOriginalName(),
+            'format' => $file_uploaded->getClientOriginalExtension(),
+            'path' => $path,
             'is_active' => true,
             'user_id' => auth()->user()->id,
         ]);
